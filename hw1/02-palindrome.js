@@ -10,7 +10,7 @@ h1Selector.className = 'fs-2 mb-3';
 paragraphSelector.className = 'mb-2 mt-4';
 elem.className = 'h-75';
 
-const handleInput = function inputHandler() {
+const handleInput = function handleInputFromUI() {
   const divInDivSelector = document.querySelector('div > div');
 
   let invalidInput = false;
