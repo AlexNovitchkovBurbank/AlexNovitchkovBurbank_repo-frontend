@@ -1,5 +1,7 @@
 // I used the bootstrap guide https://getbootstrap.com/docs/5.0/getting-started/introduction/
 // I looked inside the imported css bootstrap file https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css
+// I looked at the Airbnb style guide https://github.com/airbnb/javascript#airbnb-javascript-style-guide-
+
 const htmlBodySelector = document.querySelector('body');
 const h1Selector = document.querySelector('h1');
 const sectionSelector = document.querySelector('section');
