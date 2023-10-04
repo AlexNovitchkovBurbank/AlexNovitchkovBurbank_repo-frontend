@@ -1,3 +1,5 @@
+// I used the bootstrap guide https://getbootstrap.com/docs/5.0/getting-started/introduction/
+// I looked inside the imported css bootstrap file https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css
 const htmlBodySelector = document.querySelector('body');
 const h1Selector = document.querySelector('h1');
 const sectionSelector = document.querySelector('section');
@@ -18,10 +20,10 @@ const handleInput = function handleInputFromUI() {
 
   for (let i = 0; i < Math.floor(elem.value.length / 2); i++) {
     if (
-      elem.value[i] >= 0 &&
-      elem.value[i] <= 9 &&
-      elem.value[elem.value.length - 1 - i] >= 0 &&
-      elem.value[elem.value.length - 1 - i] <= 9
+      elem.value[i] >= 0
+      && elem.value[i] <= 9
+      && elem.value[elem.value.length - 1 - i] >= 0
+      && elem.value[elem.value.length - 1 - i] <= 9
     ) {
       if (elem.value[i] !== elem.value[elem.value.length - 1 - i]) {
         palindrome = false;

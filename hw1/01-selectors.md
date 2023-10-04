@@ -9,8 +9,8 @@
 7. orange.small
 8. bento > orange.small
 9. plate, bento
-10. -
-11. plate > \*
+10. *
+11. plate > *
 12. plate + apple
 13. bento ~ pickle
 14. plate > apple
