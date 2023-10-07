@@ -15,17 +15,17 @@ paragraphSelector.className = 'mb-2 mt-4';
 elem.className = 'h-75';
 
 const handleInput = function handleInputFromUI() {
-  const divInDivSelector = document.querySelector('div > div');
+  const responseIfPalindrome = document.querySelector('div > div');
 
   let invalidInput = false;
   let palindrome = true;
 
   for (let i = 0; i < Math.floor(elem.value.length / 2); i++) {
     if (
-      elem.value[i] >= 0
-      && elem.value[i] <= 9
-      && elem.value[elem.value.length - 1 - i] >= 0
-      && elem.value[elem.value.length - 1 - i] <= 9
+      elem.value[i] >= 0 &&
+      elem.value[i] <= 9 &&
+      elem.value[elem.value.length - 1 - i] >= 0 &&
+      elem.value[elem.value.length - 1 - i] <= 9
     ) {
       if (elem.value[i] !== elem.value[elem.value.length - 1 - i]) {
         palindrome = false;
@@ -36,19 +36,19 @@ const handleInput = function handleInputFromUI() {
   }
 
   if (elem.value.length === 0 || invalidInput) {
-    divInDivSelector.className = 'fail';
-    divInDivSelector.innerHTML = 'Invalid input!';
+    responseIfPalindrome.className = 'fail';
+    responseIfPalindrome.innerHTML = 'Invalid input!';
   } else {
     if (palindrome) {
-      divInDivSelector.className = 'success';
-      divInDivSelector.innerHTML = 'This is a palindrome!';
+      responseIfPalindrome.className = 'success';
+      responseIfPalindrome.innerHTML = 'This is a palindrome!';
     } else {
-      divInDivSelector.className = 'fail';
-      divInDivSelector.innerHTML = 'No. Try again.';
+      responseIfPalindrome.className = 'fail';
+      responseIfPalindrome.innerHTML = 'No. Try again.';
     }
   }
 
-  divInDivSelector.classList.add('mt-3');
+  responseIfPalindrome.classList.add('mt-3');
 };
 
 elem.addEventListener('input', handleInput);
