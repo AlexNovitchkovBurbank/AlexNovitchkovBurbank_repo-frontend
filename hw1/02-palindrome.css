@@ -1,0 +1,25 @@
+p,
+label {
+  font-weight: 600;
+  font-size: 15px;
+}
+
+@media (min-width: 801px) {
+  input {
+    width: 50%;
+  }
+}
+
+@media (max-width: 800px) {
+  input {
+    width: 40%;
+  }
+}
+
+.success {
+  color: darkgreen;
+}
+
+.fail {
+  color: darkred;
+}
