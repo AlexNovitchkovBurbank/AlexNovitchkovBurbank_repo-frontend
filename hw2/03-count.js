@@ -1,3 +1,5 @@
+const EMBDASH = String.fromCharCode(0x2014);
+
 const input = document.querySelector('input');
 const textSelector = document.querySelector('div:last-child');
 
@@ -9,53 +11,68 @@ const stringToArray = function BreakTextInArrayOfWords(text) {
   return arrayOfText;
 };
 
-const resetText = function setTextNoHighlights(text) {
-  const originalWordsArray = stringToArray(text);
-
-  const wordsWithoutHighlights = originalWordsArray.map((word) => {
-    if (word.startsWith('class=')) {
-      return word
-        .replaceAll('class="bg-warning">', '')
-        .replaceAll('</span>', '');
-    } else if (word.startsWith('<span')) {
-      return '';
-    }
-
-    return word;
-  });
-
-  let originalText = wordsWithoutHighlights.join(' ');
-
-  console.log(originalText);
+const resetText = function removeTextHighlights(DOMText) {
+  const originalText = DOMText.replaceAll(
+    '<span class="bg-warning">',
+    ''
+  ).replaceAll('</span>', '');
 
   textSelector.innerHTML = originalText;
 };
 
-const highlightWords = function highlightText(text) {
-  const modifiedWordsArray = stringToArray(text);
+const highlightWords = function highlightText(DOMText, searchWordEvent) {
+  const modifiedWordsArray = stringToArray(DOMText);
 
-  const wordToFind = input.value;
+  let previousInputBoxKeyPresses = searchWordEvent.srcElement.value;
 
-  if (wordToFind.length === 0) return false;
+  let wordToFind = null;
 
-  const wordsWithHighlights = modifiedWordsArray.map((word) => {
-    if (word === wordToFind) {
-      return `<span class="bg-warning">${word}</span>`;
-    } else if (word === wordToFind + ',' || word === wordToFind + '.') {
-      return `<span class="bg-warning">${word}</span>`;
+  if (searchWordEvent.key.length === 1) {
+    wordToFind = previousInputBoxKeyPresses + searchWordEvent.key;
+  } else if (searchWordEvent.key.startsWith('Backspace')) {
+    wordToFind = previousInputBoxKeyPresses.substring(
+      0,
+      searchWordEvent.srcElement.value.length - 1
+    );
+  } else {
+    wordToFind = previousInputBoxKeyPresses;
+  }
+
+  const wordsWithHighlights = modifiedWordsArray.map((token) => {
+    if (token.toUpperCase() === wordToFind.toUpperCase()) {
+      return `<span class="bg-warning">${token}</span>`;
+    } else if (token === wordToFind + ',' || token === wordToFind + '.') {
+      const word = token.substring(0, token.length - 1);
+      const punctuation = token[token.length - 1];
+
+      token = `<span class="bg-warning">${word}</span>${punctuation}`;
+    } else if (
+      token.includes(wordToFind + EMBDASH) ||
+      token.includes(EMBDASH + wordToFind)
+    ) {
+      const arrayOfTokenParts = token.split(EMBDASH);
+
+      for (const i of arrayOfTokenParts) {
+        if (i === wordToFind || i === wordToFind + '\n') {
+          token = token.replace(
+            wordToFind,
+            `<span class="bg-warning">${wordToFind}</span>`
+          );
+        }
+      }
     }
 
-    return word;
+    return token;
   });
 
-  let originalText = wordsWithHighlights.join(' ');
+  const highlightText = wordsWithHighlights.join(' ');
 
-  textSelector.innerHTML = originalText;
+  textSelector.innerHTML = highlightText;
 };
 
 const handleKeyDown = function findInParagraph(eventContainingWord) {
   resetText(textSelector.innerHTML);
-  highlightWords(textSelector.innerHTML);
+  highlightWords(textSelector.innerHTML, eventContainingWord);
 };
 
 input.addEventListener('keydown', handleKeyDown);
