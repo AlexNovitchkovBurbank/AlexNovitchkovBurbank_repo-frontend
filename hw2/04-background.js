@@ -1,21 +1,25 @@
 window.addEventListener('load', () => {
   let intervalId = setInterval(changeColor, 3 * 1000);
-  const stopEvent = document.querySelector('#stop');
+  let button = document.querySelector('#stop');
 
-  console.log(intervalId);
-  
-  const input = document.querySelector('[type=number]');
+  const input = document.querySelector('input');
 
-  if (input.textContent.length > 0) {
-    console.log("input.textContent: " + input.textContent)
-    clearInterval(intervalId);
-    intervalId = setInterval(changeColor, input.textContent * 1000);
-  } else {
-    resetInterval(intervalId);
-  }
-  
-  stopEvent.addEventListener('click', () => {
-    resetInterval(intervalId);
+  let clicks = 0;
+
+  button.addEventListener('click', () => {
+    clicks = clicks + 1;
+    if (clicks % 2 === 1) {
+      resetInterval(intervalId);
+
+      button.innerHTML =
+        '<button value="start" name="startButton" id="start" class="btn-primary">start</button>';
+    } else {
+      if (input.value.length > 0) {
+        intervalId = setInterval(changeColor, input.value * 1000);
+      }
+      button.innerHTML =
+        '<button value="stop" name="stopButton" id="stop" class="btn-primary">stop</button>';
+    }
   });
 });
 
