@@ -11,76 +11,98 @@
     />
     <script defer src="05-form.js"></script>
   </head>
-  <body>
+  <body class="bg-dark">
     <main>
-      <form>
-        <h1>Exercise 05 - Form</h1>
-        <label for="fullName">Full name:</label>
-        <br />
-        <input type="text" name="fullName" id="fullName" />
-        <br />
-        <br />
-        <label for="email">Email:</label>
-        <br />
-        <input type="email" name="email" id="email" />
-        <br />
-        <br />
-        <label for="registrationStatus">Registration Status:</label>
-        <br />
-        <select name="registrationStatus" id="registrationStatus">
-          <option>Choose an Option</option>
-        </select>
-        <br />
-        <br />
-        <div id="followingCoursesTaken">
-          Have you taken any of the following courses?
-          <br />
-          <input
-            type="checkbox"
-            name="rogrammingLanguages"
-            id="programmingLanguagesCheckbox"
-            value="Programming Languages"
-          />
-          <label for="programmingLanguagesCheckbox"
-            >Programming Languages</label
-          >
-          <br />
-          <input
-            type="checkbox"
-            name="operatingSystems"
-            id="operatingSystemsCheckbox"
-            value="Operating Systems"
-          />
-          <label for="operatingSystemsCheckbox">Operating Systems</label>
-          <br />
-          <input
-            type="checkbox"
-            name="fullStackWebDevelopment"
-            id="fullStackWebDevelopmentCheckbox"
-            value="Full Stack Web Development"
-          />
-          <label for="fullStackWebDevelopmentCheckbox"
-            >Full Stack Web Development</label
-          >
-        </div>
-        <br />
-        <label for="anythingElse">Anything else?</label>
-        <br />
-        <textarea name="anythingElse" id="anythingElse"></textarea>
-        <br />
-        <button
-          type="submit"
-          name="submit"
-          value="submit"
-          id="submitButton"
-          class="btn-primary"
+      <div class="d-flex flex-row justify-content-center">
+        <form
+          class="d-flex-column align-items-center mt-5 w-50 px-3 pt-3 pb-2 bg-light rounded"
         >
-          submit
-        </button>
-        <button type="reset" name="reset" value="reset" id="resetButton">
-          reset
-        </button>
-      </form>
+          <h1 class="d-flex justify-content-center">Exercise 05 - Form</h1>
+          <label for="fullName" class="form-label">Full name:</label>
+          <input
+            type="text"
+            name="fullName"
+            id="fullName"
+            class="form-control form-control-sm mb-3"
+          />
+          <label for="email" class="form-label">Email:</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            class="form-control form-control-sm mb-3"
+          />
+          <label for="registrationStatus" class="form-label"
+            >Registration Status:</label
+          >
+          <select
+            name="registrationStatus"
+            id="registrationStatus"
+            class="form-select form-select-sm mb-3"
+          >
+            <option value="Choose an option">Choose an Option</option>
+          </select>
+          <div id="followingCoursesTaken" class="mb-3">
+            <p class="mb-1">Have you taken any of the following courses?</p>
+            <input
+              type="checkbox"
+              name="rogrammingLanguages"
+              id="programmingLanguagesCheckbox"
+              value="Programming Languages"
+              class="form-check-input"
+            />
+            <label for="programmingLanguagesCheckbox"
+              >Programming Languages</label
+            >
+            <br />
+            <input
+              type="checkbox"
+              name="operatingSystems"
+              id="operatingSystemsCheckbox"
+              value="Operating Systems"
+              class="form-check-input"
+            />
+            <label for="operatingSystemsCheckbox">Operating Systems</label>
+            <br />
+            <input
+              type="checkbox"
+              name="fullStackWebDevelopment"
+              id="fullStackWebDevelopmentCheckbox"
+              value="Full Stack Web Development"
+              class="form-check-input"
+            />
+            <label for="fullStackWebDevelopmentCheckbox"
+              >Full Stack Web Development</label
+            >
+          </div>
+          <label for="anythingElse" class="form-label">Anything else?</label>
+          <textarea
+            name="anythingElse"
+            id="anythingElse"
+            class="form-control"
+          ></textarea>
+          <div class="d-flex flex-row">
+            <button
+              type="submit"
+              name="submit"
+              value="submit"
+              id="submitButton"
+              class="btn btn-primary mt-3 mb-2 me-1 flex-fill"
+            >
+              Submit
+            </button>
+            <button
+              type="reset"
+              name="reset"
+              value="reset"
+              id="resetButton"
+              class="btn btn-secondary mt-3 mb-2 me-1 flex-fill"
+            >
+              Reset
+            </button>
+          </div>
+        </form>
+      </div>
     </main>
   </body>
 </html>

@@ -8,17 +8,20 @@ window.addEventListener('load', () => {
 
   button.addEventListener('click', () => {
     clicks = clicks + 1;
+    const div = document.querySelector('div > div');
+    button.remove();
+
     if (clicks % 2 === 1) {
       resetInterval(intervalId);
 
-      button.innerHTML =
-        '<button value="start" name="startButton" id="start" class="btn-primary">start</button>';
+      div.innerHTML =
+        '<button value="start" name="startButton" id="start" class="btn btn-primary">start</button>';
     } else {
       if (input.value.length > 0) {
         intervalId = setInterval(changeColor, input.value * 1000);
       }
-      button.innerHTML =
-        '<button value="stop" name="stopButton" id="stop" class="btn-primary">stop</button>';
+      div.innerHTML =
+        '<button value="stop" name="stopButton" id="stop" class="btn btn-danger">stop</button>';
     }
   });
 });

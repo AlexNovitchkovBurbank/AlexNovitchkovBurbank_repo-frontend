@@ -11,27 +11,34 @@
     <script defer src="04-background.js"></script>
   </head>
   <body>
-    <main>
-      <h1>Exercise 04 - Background</h1>
-      <p>
-        The background color will change every few seconds (as indicated below).
-        You can stop this behavior and you can also change how often the
-        background color changes.
-      </p>
-      <div>
-        <label for="interval">Background change interval (seconds): </label>
-        <input type="number" name="interval" id="interval" />
-      </div>
-      <div>
-        <button
-          type="button"
-          value="stop"
-          name="stopButton"
-          id="stop"
-          class="btn-primary"
-        >
-          stop
-        </button>
+    <main class="d-flex flex-row justify-content-center">
+      <div class="w-50 mt-5 pt-4 px-3 pb-3 my-6 bg-white rounded">
+        <h1 class="d-flex justify-content-center">Exercise 04 - Background</h1>
+        <p>
+          The background color will change every few seconds (as indicated
+          below). You can stop this behavior and you can also change how often
+          the background color changes.
+        </p>
+        <div>
+          <label for="interval">Background change interval (seconds): </label>
+          <input
+            type="number"
+            name="interval"
+            id="interval"
+            class="form-control form-control-sm mb-3 w-50"
+          />
+        </div>
+        <div>
+          <button
+            type="button"
+            value="stop"
+            name="stopButton"
+            id="stop"
+            class="btn btn-danger"
+          >
+            stop
+          </button>
+        </div>
       </div>
     </main>
   </body>
