@@ -1,31 +1,3 @@
-window.addEventListener('load', () => {
-  let intervalId = setInterval(changeColor, 3 * 1000);
-  let button = document.querySelector('#stop');
-
-  const input = document.querySelector('input');
-
-  let clicks = 0;
-
-  button.addEventListener('click', () => {
-    clicks = clicks + 1;
-    const div = document.querySelector('div > div');
-    button.remove();
-
-    if (clicks % 2 === 1) {
-      resetInterval(intervalId);
-
-      div.innerHTML =
-        '<button value="start" name="startButton" id="start" class="btn btn-primary">start</button>';
-    } else {
-      if (input.value.length > 0) {
-        intervalId = setInterval(changeColor, input.value * 1000);
-      }
-      div.innerHTML =
-        '<button value="stop" name="stopButton" id="stop" class="btn btn-danger">stop</button>';
-    }
-  });
-});
-
 const changeColor = function changePageBackgroundColor() {
   const red = Math.floor(Math.random() * 100) % 255;
   const green = Math.floor(Math.random() * 100) % 255;
@@ -36,5 +8,27 @@ const changeColor = function changePageBackgroundColor() {
 
 const resetInterval = function resetBackgroundColorInterval(intervalId) {
   clearInterval(intervalId);
-  setInterval(changeColor, 3 * 1000);
+  intervalId = setInterval(changeColor, 3 * 1000);
 };
+
+let intervalId = setInterval(changeColor, 3 * 1000);
+let button = document.querySelector('#button');
+
+const input = document.querySelector('input');
+
+window.addEventListener('load', () => {
+  button.addEventListener('click', () => {
+    if (button.className === 'btn btn-primary' && input.value.length > 0) {
+      clearInterval(intervalId);
+      intervalId = setInterval(changeColor, input.value * 1000);
+
+      button.className = 'btn btn-danger';
+      button.textContent = 'stop';
+    } else if (button.textContent === 'stop') {
+      intervalId = resetInterval(intervalId);
+
+      button.className = 'btn btn-primary';
+      button.textContent = 'start';
+    }
+  });
+});
