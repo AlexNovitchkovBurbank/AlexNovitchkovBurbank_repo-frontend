@@ -18,21 +18,21 @@
           class="d-flex-column align-items-center mt-5 w-50 px-3 pt-3 pb-2 bg-light rounded"
         >
           <h1 class="d-flex justify-content-center">Exercise 05 - Form</h1>
-          <label for="fullName" class="form-label">Full name:</label>
+          <label for="fullName" class="form-label fw-bold">Full name:</label>
           <input
             type="text"
             name="fullName"
             id="fullName"
             class="form-control form-control-sm mb-3"
           />
-          <label for="email" class="form-label">Email:</label>
+          <label for="email" class="form-label fw-bold">Email:</label>
           <input
             type="email"
             name="email"
             id="email"
             class="form-control form-control-sm mb-3"
           />
-          <label for="registrationStatus" class="form-label"
+          <label for="registrationStatus" class="form-label fw-bold"
             >Registration Status:</label
           >
           <select
@@ -43,39 +43,47 @@
             <option value="Choose an option">Choose an Option</option>
           </select>
           <div id="followingCoursesTaken" class="mb-3">
-            <p class="mb-1">Have you taken any of the following courses?</p>
-            <input
-              type="checkbox"
-              name="rogrammingLanguages"
-              id="programmingLanguagesCheckbox"
-              value="Programming Languages"
-              class="form-check-input"
-            />
-            <label for="programmingLanguagesCheckbox"
-              >Programming Languages</label
-            >
-            <br />
-            <input
-              type="checkbox"
-              name="operatingSystems"
-              id="operatingSystemsCheckbox"
-              value="Operating Systems"
-              class="form-check-input"
-            />
-            <label for="operatingSystemsCheckbox">Operating Systems</label>
-            <br />
-            <input
-              type="checkbox"
-              name="fullStackWebDevelopment"
-              id="fullStackWebDevelopmentCheckbox"
-              value="Full Stack Web Development"
-              class="form-check-input"
-            />
-            <label for="fullStackWebDevelopmentCheckbox"
-              >Full Stack Web Development</label
-            >
+            <p class="mb-2 fw-bold">
+              Have you taken any of the following courses?
+            </p>
+            <div class="mb-0">
+              <input
+                type="checkbox"
+                name="rogrammingLanguages"
+                id="programmingLanguagesCheckbox"
+                value="Programming Languages"
+                class="form-check-input"
+              />
+              <label for="programmingLanguagesCheckbox"
+                >Programming Languages</label
+              >
+            </div>
+            <div class="mb-0">
+              <input
+                type="checkbox"
+                name="operatingSystems"
+                id="operatingSystemsCheckbox"
+                value="Operating Systems"
+                class="form-check-input"
+              />
+              <label for="operatingSystemsCheckbox">Operating Systems</label>
+            </div>
+            <div class="mb-0">
+              <input
+                type="checkbox"
+                name="fullStackWebDevelopment"
+                id="fullStackWebDevelopmentCheckbox"
+                value="Full Stack Web Development"
+                class="form-check-input"
+              />
+              <label for="fullStackWebDevelopmentCheckbox"
+                >Full Stack Web Development</label
+              >
+            </div>
           </div>
-          <label for="anythingElse" class="form-label">Anything else?</label>
+          <label for="anythingElse" class="form-label fw-bold"
+            >Anything else?</label
+          >
           <textarea
             name="anythingElse"
             id="anythingElse"

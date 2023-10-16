@@ -6,11 +6,6 @@ const changeColor = function changePageBackgroundColor() {
   document.body.style.backgroundColor = `rgba(${red}, ${green}, ${blue}, 50%)`;
 };
 
-const resetInterval = function resetBackgroundColorInterval(intervalId) {
-  clearInterval(intervalId);
-  intervalId = setInterval(changeColor, 3 * 1000);
-};
-
 let intervalId = setInterval(changeColor, 3 * 1000);
 let button = document.querySelector('#button');
 
@@ -25,7 +20,7 @@ window.addEventListener('load', () => {
       button.className = 'btn btn-danger';
       button.textContent = 'stop';
     } else if (button.textContent === 'stop') {
-      intervalId = resetInterval(intervalId);
+      clearInterval(intervalId);
 
       button.className = 'btn btn-primary';
       button.textContent = 'start';
