@@ -1,7 +1,7 @@
 const EMBDASH = String.fromCharCode(0x2014);
 
 const input = document.querySelector('input');
-const textSelector = document.querySelector('div:last-child');
+const textSelector = document.querySelector('div > div:last-child');
 
 const stringToArray = function BreakTextInArrayOfWords(text) {
   let formattedText = text.replaceAll('       ', '').trim();
