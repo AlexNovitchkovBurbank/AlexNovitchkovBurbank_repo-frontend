@@ -1,14 +1,19 @@
+// I used https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/submit_event to understand and use the submit event
+// I used https://github.com/airbnb/javascript for formatting the javascript
+// I used https://eloquentjavascript.net/18_http.html for adding an event listener for forms
+// 
+
 const formEvent = document.querySelector('form');
 
 const formBlank = function isFormBlank() {
   if (
-    formEvent.elements[0].value === '' &&
-    formEvent.elements[1].value === '' &&
-    formEvent[2].value === 'Choose an Option' &&
-    !formEvent[3].checked &&
-    !formEvent[4].checked &&
-    !formEvent[5].checked &&
-    formEvent[6].value === ''
+    formEvent.elements[0].value === ''
+    && formEvent.elements[1].value === ''
+    && formEvent[2].value === 'Choose an Option'
+    && !formEvent[3].checked
+    && !formEvent[4].checked
+    && !formEvent[5].checked
+    && formEvent[6].value === ''
   ) {
     return true;
   }
@@ -32,9 +37,9 @@ const displayData = function displayDataToConsole(event) {
 
   for (let i = 0; i < 8; i++) {
     if (
-      formEvent.elements[i].value.length > 0 &&
-      !formEvent.elements[i].id.includes('Checkbox') &&
-      formEvent.elements[i].value !== 'submit'
+      formEvent.elements[i].value.length > 0
+      && !formEvent.elements[i].id.includes('Checkbox')
+      && formEvent.elements[i].value !== 'submit'
     ) {
       console.log(formEvent.elements[i].value);
     } else if (formEvent.elements[i].id.includes('Checkbox')) {

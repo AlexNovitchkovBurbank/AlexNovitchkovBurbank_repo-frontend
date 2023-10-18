@@ -1,10 +1,16 @@
+// I used VS code, with MDN Web docs, to show me some of the string properties
+// I used https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String for general string methods and uses
+// I used https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array for array methods
+// I used https://developer.mozilla.org/en-US/docs/Web/API/Element/keydown_event for understanding the keydown event
+// I used https://github.com/airbnb/javascript for formatting the javascript
+
 const EMBDASH = String.fromCharCode(0x2014);
 
 const input = document.querySelector('input');
 const textSelector = document.querySelector('div > div:last-child');
 
 const stringToArray = function BreakTextInArrayOfWords(text) {
-  let formattedText = text.replaceAll('       ', '').trim();
+  const formattedText = text.replaceAll('       ', '').trim();
 
   const arrayOfText = formattedText.split(' ');
 
@@ -38,22 +44,24 @@ const highlightWords = function highlightText(DOMText, searchWordEvent) {
     wordToFind = previousInputBoxKeyPresses;
   }
 
+  // I compare the token, possibly with special characters at the end or an embdash in the middle of two different words
   const wordsWithHighlights = modifiedWordsArray.map((token) => {
     if (token.toUpperCase() === wordToFind.toUpperCase()) {
       return `<span class="bg-warning">${token}</span>`;
-    } else if (token === wordToFind + ',' || token === wordToFind + '.') {
+    } else if (token === `${wordToFind},` || token === `${wordToFind}.`) {
       const word = token.substring(0, token.length - 1);
       const punctuation = token[token.length - 1];
 
       token = `<span class="bg-warning">${word}</span>${punctuation}`;
     } else if (
-      token.includes(wordToFind + EMBDASH) ||
-      token.includes(EMBDASH + wordToFind)
+             token.includes(wordToFind + EMBDASH)
+             || token.includes(EMBDASH + wordToFind)
     ) {
+       // If there is an embdash, I split the token apart
       const arrayOfTokenParts = token.split(EMBDASH);
 
       for (const i of arrayOfTokenParts) {
-        if (i === wordToFind || i === wordToFind + '\n') {
+        if (i === wordToFind || i === `${wordToFind}'\n'`) {
           token = token.replace(
             wordToFind,
             `<span class="bg-warning">${wordToFind}</span>`

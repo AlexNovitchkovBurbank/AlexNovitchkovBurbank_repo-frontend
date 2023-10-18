@@ -22,10 +22,10 @@ const handleInput = function handleInputFromUI() {
 
   for (let i = 0; i < Math.floor(elem.value.length / 2); i++) {
     if (
-      elem.value[i] >= 0 &&
-      elem.value[i] <= 9 &&
-      elem.value[elem.value.length - 1 - i] >= 0 &&
-      elem.value[elem.value.length - 1 - i] <= 9
+      elem.value[i] >= 0
+      && elem.value[i] <= 9
+      && elem.value[elem.value.length - 1 - i] >= 0
+      && elem.value[elem.value.length - 1 - i] <= 9
     ) {
       if (elem.value[i] !== elem.value[elem.value.length - 1 - i]) {
         palindrome = false;
@@ -35,7 +35,8 @@ const handleInput = function handleInputFromUI() {
     }
   }
 
-  if (elem.value.length === 0 || invalidInput) {
+  if (
+     elem.value.length === 0 || invalidInput) {
     responseIfPalindrome.className = 'fail';
     responseIfPalindrome.innerHTML = 'Invalid input!';
   } else {
