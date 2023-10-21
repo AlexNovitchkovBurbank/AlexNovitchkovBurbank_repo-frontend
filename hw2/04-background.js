@@ -11,6 +11,8 @@ const changeColor = function changePageBackgroundColor() {
 };
 
 let intervalId = setInterval(changeColor, 3 * 1000);
+changeColor(); // The initial background color will be set here
+
 const button = document.querySelector('#button');
 
 const input = document.querySelector('input');
@@ -24,7 +26,7 @@ window.addEventListener('load', () => {
 
       button.className = 'btn btn-danger';
       button.textContent = 'stop';
-    } else if (button.textContent === 'stop') {
+    } else if (button.className === 'btn btn-danger') {
       clearInterval(intervalId);
 
       button.className = 'btn btn-primary';

@@ -3,6 +3,7 @@
 // I used https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array for array methods
 // I used https://developer.mozilla.org/en-US/docs/Web/API/Element/keydown_event for understanding the keydown event
 // I used https://github.com/airbnb/javascript for formatting the javascript
+// I used https://www.compart.com/en/unicode/U+2014 to implement the embdash character
 
 const EMBDASH = String.fromCharCode(0x2014);
 

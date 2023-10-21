@@ -7,13 +7,13 @@ const formEvent = document.querySelector('form');
 
 const formBlank = function isFormBlank() {
   if (
-    formEvent.elements[0].value === ''
-    && formEvent.elements[1].value === ''
-    && formEvent[2].value === 'Choose an Option'
-    && !formEvent[3].checked
-    && !formEvent[4].checked
-    && !formEvent[5].checked
-    && formEvent[6].value === ''
+    formEvent.elements['fullName'].value === ''
+    && formEvent.elements['email'].value === ''
+    && formEvent['registrationStatus'].value === 'Choose an Option'
+    && !formEvent['programmingLanguages'].checked
+    && !formEvent['operatingSystems'].checked
+    && !formEvent['fullStackWebDevelopment'].checked
+    && formEvent['anythingElse'].value === ''
   ) {
     return true;
   }
@@ -35,7 +35,9 @@ const displayData = function displayDataToConsole(event) {
 
   console.group('Data inputted');
 
-  for (let i = 0; i < 8; i++) {
+  const numMeaningfulElements = formEvent.elements.length - 2;
+
+  for (let i = 0; i < numMeaningfulElements; i++) {
     if (
       formEvent.elements[i].value.length > 0
       && !formEvent.elements[i].id.includes('Checkbox')
