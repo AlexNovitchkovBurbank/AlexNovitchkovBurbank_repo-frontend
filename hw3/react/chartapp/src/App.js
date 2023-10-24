@@ -29,6 +29,7 @@ function App() {
         </Link>
       </div>
       <Routes>
+        <Route path='/' element={<HomeComponent />} />
         <Route path='/home' element={<HomeComponent />} />
         <Route path='/search' element={<SearchComponent />} />
         <Route path='/houses' element={<HousesComponent />} />
