@@ -1,12 +1,10 @@
 import React from 'react';
 import './search.css';
-import { Axios } from 'axios';
+import axios from 'axios';
 
-const url = '';
+const url = 'https://thronesapi.com/api/v2/Characters';
 
-const getThronesApi = new Axios();
-
-getThronesApi.get(url, {}).then((apiData) => console.log(apiData.data));
+axios.get(url).then((apiData) => console.log(apiData.data));
 
 document.addEventListener('submit', (event) => {
   event.preventDefault();
