@@ -4,10 +4,24 @@ import axios from 'axios';
 
 const url = 'https://thronesapi.com/api/v2/Characters';
 
-axios.get(url).then((apiData) => console.log(apiData.data));
+const apiData = null;
+
+const findDataInArray = function searchInDataInArray(userInput, dataArrayObject) {
+  for (let dataAsObject of dataArrayObject) {
+    if (dataArrayObject.firstName === userInput) {
+        return dataAsObject;
+    }
+  }
+
+  return null;
+}
+
+axios.get(url).then((data) => apiData = data);
 
 document.addEventListener('submit', (event) => {
   event.preventDefault();
+
+  character = findDataInArray(apiData);
 
   const resultBlock = document.querySelector('#results');
 });
