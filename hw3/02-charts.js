@@ -10,6 +10,24 @@ const backgroundColors = [
   'rgba(40, 159, 64, 0.8)',
   'rgba(210, 199, 199, 0.8)',
   'rgba(78, 52, 199, 0.8)',
+  'rgba(20, 20, 20, 0.8)',
+  'rgba(200, 100, 0, 0.8)',
+  'rgba(255, 100, 255, 0.8)',
+  'rgba(100, 200, 0, 0.8)',
+  'rgba(45, 100, 200, 0.8)',
+  'rgba(20, 20, 20, 0.8)',
+  'rgba(200, 100, 0, 0.8)',
+  'rgba(255, 100, 255, 0.8)',
+  'rgba(100, 200, 0, 0.8)',
+  'rgba(45, 100, 200, 0.8)',
+  'rgba(199, 199, 199, 0.8)',
+  'rgba(83, 102, 255, 0.8)',
+  'rgba(20, 20, 20, 0.8)',
+  'rgba(200, 100, 0, 0.8)',
+  'rgba(255, 100, 255, 0.8)',
+  'rgba(54, 162, 235, 0.8)',
+  'rgba(153, 102, 255, 0.8)',
+  'rgba(255, 159, 64, 0.8)',
 ];
 
 const borderColors = [
@@ -29,17 +47,35 @@ const borderColors = [
 // url for the Thrones API
 const url = 'https://thronesapi.com/api/v2/Characters';
 
-const renderChart = () => {
+const recordSameHouse = function recordCharacterSameHouse(
+  searchString,
+  allCharactersArray
+) {
+  let charactersCountInSameHouse = 0;
+
+  for (let i = 0; i < allCharactersArray.length; i++) {
+    if (
+      allCharactersArray[i]['family'].replace('House ', '') === searchString &&
+      allCharactersArray[i]['family'] !== ''
+    ) {
+      charactersCountInSameHouse = charactersCountInSameHouse + 1;
+    }
+  }
+
+  return charactersCountInSameHouse;
+};
+
+const renderChart = (houseNames, charactersCountInSameHouseArray) => {
   const donutChart = document.querySelector('.donut-chart');
 
   new Chart(donutChart, {
     type: 'doughnut',
     data: {
-      labels: ['label', 'label', 'label', 'label'],
+      labels: houseNames,
       datasets: [
         {
-          label: 'My First Dataset',
-          data: [1, 12, 33, 5],
+          label: 'Character houses',
+          data: charactersCountInSameHouseArray,
           backgroundColor: backgroundColors,
           borderColor: borderColors,
           borderWidth: 1,
@@ -49,4 +85,46 @@ const renderChart = () => {
   });
 };
 
-renderChart();
+const chartHouseStatistics = function chartNumberOfCharactersInEachHouse() {
+  fetch(url)
+    .then((data) => data.json())
+    .then((data) => {
+      const { houseNames, charactersCountInSameHouseArray } =
+        findCharactersBasedOnHouse(data);
+      renderChart(houseNames, charactersCountInSameHouseArray);
+    });
+};
+
+const findCharactersBasedOnHouse =
+  function findCharactersBasedOnHouseInArrayOfObjects(allCharactersArray) {
+    const charactersCountInSameHouseArray = [];
+    const houseNames = [];
+
+    let charactersCountInSameHouse = 0;
+
+    for (let i = 0; i < allCharactersArray.length; i++) {
+      const characterInfo = allCharactersArray[i];
+      charactersCountInSameHouse = 0;
+
+      const searchString = characterInfo['family'].replace('House ', '');
+
+      if (!houseNames.includes(searchString)) {
+        charactersCountInSameHouse = recordSameHouse(
+          searchString,
+          allCharactersArray
+        );
+
+        if (charactersCountInSameHouse !== 0) {
+          charactersCountInSameHouseArray.push(charactersCountInSameHouse);
+          houseNames.push(searchString);
+        }
+      }
+    }
+
+    //console.log(charactersCountInSameHouseArray);
+    return { houseNames, charactersCountInSameHouseArray };
+  };
+
+chartHouseStatistics();
+
+//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes

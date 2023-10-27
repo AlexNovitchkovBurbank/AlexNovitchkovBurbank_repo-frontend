@@ -2,9 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 const findCharactersBasedOnHouse =
-  function findCharactersBasedOnHouseInArrayOfObjects(userInput, data) {
+  function findCharactersBasedOnHouseInArrayOfObjects(
+    userInput,
+    allCharactersArray
+  ) {
     const charactersInSameHouse = [];
-    for (let obj of dataArrayObject) {
+    for (let obj of allCharactersArray) {
       if (
         obj['family'] === userInput.replace('House ', '') &&
         obj['family'] !== ''
