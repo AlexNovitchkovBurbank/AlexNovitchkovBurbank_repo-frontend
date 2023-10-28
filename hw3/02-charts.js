@@ -25,7 +25,7 @@ const backgroundColors = [
   'rgba(20, 20, 20, 0.8)',
   'rgba(200, 100, 0, 0.8)',
   'rgba(255, 100, 255, 0.8)',
-  'rgba(54, 162, 235, 0.8)',
+  'rgba(54, 98, 235, 0.8)',
   'rgba(153, 102, 255, 0.8)',
   'rgba(255, 159, 64, 0.8)',
 ];
@@ -42,6 +42,24 @@ const borderColors = [
   'rgba(40, 159, 64, 1)',
   'rgba(210, 199, 199, 1)',
   'rgba(78, 52, 199, 1)',
+  'rgba(20, 20, 20, 1)',
+  'rgba(200, 100, 0, 1)',
+  'rgba(255, 100, 255, 1)',
+  'rgba(100, 200, 0, 1)',
+  'rgba(45, 100, 200, 1)',
+  'rgba(20, 20, 20, 1)',
+  'rgba(200, 100, 0, 1)',
+  'rgba(255, 100, 255, 1)',
+  'rgba(100, 200, 0, 1)',
+  'rgba(45, 100, 200, 1)',
+  'rgba(199, 199, 199, 1)',
+  'rgba(83, 102, 255, 1)',
+  'rgba(20, 20, 20, 1)',
+  'rgba(200, 100, 0, 1)',
+  'rgba(255, 100, 255, 1)',
+  'rgba(54, 98, 235, 1)',
+  'rgba(153, 102, 255, 1)',
+  'rgba(255, 159, 64, 1)',
 ];
 
 // url for the Thrones API
@@ -108,7 +126,7 @@ const findCharactersBasedOnHouse =
 
       const searchString = characterInfo['family'].replace('House ', '');
 
-      if (!houseNames.includes(searchString)) {
+      if (!houseNames.includes(searchString) && searchString != "Unknown" && searchString != "None") {
         charactersCountInSameHouse = recordSameHouse(
           searchString,
           allCharactersArray
