@@ -110,7 +110,8 @@ const chartHouseStatistics = function chartNumberOfCharactersInEachHouse() {
       const { houseNames, charactersCountInSameHouseArray } =
         findCharactersBasedOnHouse(data);
       renderChart(houseNames, charactersCountInSameHouseArray);
-    });
+    })
+    .catch((error) => console.error(error));
 };
 
 const findCharactersBasedOnHouse =
@@ -126,7 +127,11 @@ const findCharactersBasedOnHouse =
 
       const searchString = characterInfo['family'].replace('House ', '');
 
-      if (!houseNames.includes(searchString) && searchString != "Unknown" && searchString != "None") {
+      if (
+        !houseNames.includes(searchString) &&
+        searchString != 'Unknown' &&
+        searchString != 'None'
+      ) {
         charactersCountInSameHouse = recordSameHouse(
           searchString,
           allCharactersArray

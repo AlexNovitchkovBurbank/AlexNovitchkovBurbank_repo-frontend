@@ -90,7 +90,7 @@ document.addEventListener('submit', (event) => {
 // The component that runs when /search is invoked
 const SearchComponent = function searchCharacters() {
   return (
-    <div>
+    <main>
       <h1>Search</h1>
       <form className='d-flex flex-direction-row justify-content-center'>
         <label htmlFor='searchBox' className='me-2 d-inline align-self-center'>
@@ -112,7 +112,7 @@ const SearchComponent = function searchCharacters() {
         id='results'
         className='mt-4 d-flex flex-direction-row justify-content-center'
       ></div>
-    </div>
+    </main>
   );
 };
 

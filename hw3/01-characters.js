@@ -57,8 +57,8 @@ const displayData = function displayDataOnDOM(content) {
 const buildElement = function buildDOMElement(content) {
   const container = document.createElement('div');
   const image = document.createElement('img');
-  const name = document.createElement('p');
-  const title = document.createElement('p');
+  const name = document.createElement('h2');
+  const title = document.createElement('h3');
 
   numElements = numElements + 1;
 
@@ -68,7 +68,7 @@ const buildElement = function buildDOMElement(content) {
   container.id = `container${numElements}`;
 
   image.src = content['imageUrl'];
-  image.alt = content['image'];
+  image.alt = `Picture of ${content['firstName']} ${content['lastName']}`;
   image.style.width = '236px';
   image.style.height = '236px';
   image.className = 'mx-2';
@@ -109,3 +109,5 @@ const smallText = function shouldTextBeSmall(textLength) {
 // https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseover_event
 // Visual Studio code intellisense
 // Microsoft Edge DevTools
+// Lighthouse in Microsoft Edge
+// Wave Extension in Microsoft Edge
