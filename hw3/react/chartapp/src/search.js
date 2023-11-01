@@ -1,5 +1,4 @@
 import React from 'react';
-import './search.css';
 import axios from 'axios';
 
 const url = 'https://thronesapi.com/api/v2/Characters';

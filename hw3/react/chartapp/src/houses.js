@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Doughnut } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 
@@ -90,17 +89,28 @@ const recordSameHouse = function recordCharacterSameHouse(
   return charactersCountInSameHouse;
 };
 
+const fixTyposInNames = function fixTyposInCharacterNames(data) {
+  for (let i = 0; i < data.length; i++) {
+    data[i]['family'] = data[i]['family'].replace("Targaryn", "Targaryen");
+    data[i]['family'] = data[i]['family'].replace("Unkown", "Unknown");
+  }
+
+  return data;
+}
+
 const chartHouseStatistics = function chartNumberOfCharactersInEachHouse() {
   fetch(url)
     .then((characterDataArray) => characterDataArray.json())
     .then((characterDataArray) => {
+      characterDataArray = fixTyposInNames(characterDataArray);
       const { houseNames, charactersCountInSameHouseArray } =
         findCharactersBasedOnHouse(characterDataArray);
+
       data = {
         labels: houseNames,
         datasets: [
           {
-            label: 'Character houses',
+            label: '# characters in house',
             data: charactersCountInSameHouseArray,
             backgroundColor: backgroundColors,
             borderColor: borderColors,
@@ -142,11 +152,11 @@ const findCharactersBasedOnHouse =
       }
     }
 
-    //console.log(charactersCountInSameHouseArray);
     return { houseNames, charactersCountInSameHouseArray };
   };
 
 chartHouseStatistics();
+
 
 // I used https://react-chartjs-2.js.org/ to initialize the variables
 ChartJS.register(ArcElement, Tooltip, Legend);

@@ -103,10 +103,21 @@ const renderChart = (houseNames, charactersCountInSameHouseArray) => {
   });
 };
 
+const fixTyposInNames = function fixTyposInCharacterNames(data) {
+  for (let i = 0; i < data.length; i++) {
+    data[i]['family'] = data[i]['family'].replace("Targaryn", "Targaryen");
+    data[i]['family'] = data[i]['family'].replace("Unkown", "Unknown");
+  }
+
+  return data;
+}
+
 const chartHouseStatistics = function chartNumberOfCharactersInEachHouse() {
   fetch(url)
     .then((data) => data.json())
     .then((data) => {
+      data = fixTyposInNames(data);
+
       const { houseNames, charactersCountInSameHouseArray } =
         findCharactersBasedOnHouse(data);
       renderChart(houseNames, charactersCountInSameHouseArray);
@@ -144,7 +155,6 @@ const findCharactersBasedOnHouse =
       }
     }
 
-    //console.log(charactersCountInSameHouseArray);
     return { houseNames, charactersCountInSameHouseArray };
   };
 
