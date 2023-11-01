@@ -163,9 +163,11 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 const HousesComponent = function housesChart() {
   return (
-    <main>
-      <h1>Characters per house</h1>
-      <Doughnut data={data} />
+    <main className="d-flex flex-row justify-content-center">
+      <div className='w-75'>
+        <h1 className="text-align-center">Characters per house</h1>
+        <Doughnut data={data} />
+      </div>
     </main>
   );
 };

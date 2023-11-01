@@ -89,7 +89,6 @@ const renderChart = (houseNames, charactersCountInSameHouseArray) => {
   new Chart(donutChart, {
     type: 'doughnut',
     data: {
-      labels: houseNames,
       datasets: [
         {
           label: 'Character houses',

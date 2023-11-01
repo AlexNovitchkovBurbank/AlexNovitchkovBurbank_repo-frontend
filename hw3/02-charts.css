@@ -13,4 +13,6 @@ h1 {
   padding: 0.8rem;
   border-radius: 0.8rem;
   background-color: var(--white);
+  display: flex;
+  justify-self: center;
 }
