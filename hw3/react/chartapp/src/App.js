@@ -6,9 +6,13 @@ import HousesComponent from './houses';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
+  const body = document.querySelector("body");
+  const noScriptTag = document.querySelector("noscript");
+  body.removeChild(noScriptTag);
+
   return (
     <div className='App'>
-      <div className='d-flex justify-content-end bg-dark navheight'>
+      <header className='d-flex justify-content-end bg-dark navheight'>
         <Link
           to='/home'
           className='me-4 text-white text-decoration-none align-self-center'
@@ -27,7 +31,7 @@ function App() {
         >
           Houses
         </Link>
-      </div>
+      </header>
       <Routes>
         <Route path='/' element={<HomeComponent />} />
         <Route path='/home' element={<HomeComponent />} />
@@ -40,5 +44,7 @@ function App() {
 
 export default App;
 
-// https://getbootstrap.com/docs/5.0/getting-started/contents/
-// https://getbootstrap.com/docs/5.0/utilities/flex/
+// I used https://getbootstrap.com/docs/5.0/getting-started/contents/ to install bootstrap
+// I used https://getbootstrap.com/docs/5.0/utilities/flex/ to understand flex
+// I used https://dequeuniversity.com/rules/axe/4.8/region?application=axeAPI to structure elements
+// I used https://stackoverflow.com/questions/30877378/remove-a-noscript-tag-inside-the-head-tag-with-javascript to remove the noscript tag

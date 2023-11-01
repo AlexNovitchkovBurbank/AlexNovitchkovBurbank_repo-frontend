@@ -10,20 +10,20 @@ document.addEventListener('mouseover', (event) => {
     container = document.querySelector(`#container${i}`);
 
     if (
-      !event.target.id.includes('container') &&
-      !event.target.id.includes('name') &&
-      !event.target.id.includes('image') &&
-      !event.target.id.includes('title')
+      !event.target.id.includes('container')
+      && !event.target.id.includes('name')
+      && !event.target.id.includes('image')
+      && !event.target.id.includes('title')
     ) {
       if (container.className.includes('bg-primary')) {
         container.classList.remove('bg-primary');
         container.classList.add('cyan');
       }
     } else if (
-      event.target.id === `container${i}` ||
-      event.target.id === `name${i}` ||
-      event.target.id === `image${i}` ||
-      event.target.id === `title${i}`
+      event.target.id === `container${i}`
+      || event.target.id === `name${i}`
+      || event.target.id === `image${i}`
+      || event.target.id === `title${i}`
     ) {
       if (container.className.includes('cyan')) {
         container.classList.remove('cyan');

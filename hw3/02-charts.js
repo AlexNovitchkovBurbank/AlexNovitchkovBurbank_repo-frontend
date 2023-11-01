@@ -65,6 +65,9 @@ const borderColors = [
 // url for the Thrones API
 const url = 'https://thronesapi.com/api/v2/Characters';
 
+// I used https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes to understand arrays and methods
+
+// returns all characters that are in the house specified by the search string
 const recordSameHouse = function recordCharacterSameHouse(
   searchString,
   allCharactersArray
@@ -73,8 +76,8 @@ const recordSameHouse = function recordCharacterSameHouse(
 
   for (let i = 0; i < allCharactersArray.length; i++) {
     if (
-      allCharactersArray[i]['family'].replace('House ', '') === searchString &&
-      allCharactersArray[i]['family'] !== ''
+      allCharactersArray[i]['family'].replace('House ', '') === searchString
+      && allCharactersArray[i]['family'] !== ''
     ) {
       charactersCountInSameHouse = charactersCountInSameHouse + 1;
     }
@@ -83,7 +86,7 @@ const recordSameHouse = function recordCharacterSameHouse(
   return charactersCountInSameHouse;
 };
 
-const renderChart = (houseNames, charactersCountInSameHouseArray) => {
+const renderChart = (charactersCountInSameHouseArray) => {
   const donutChart = document.querySelector('.donut-chart');
 
   new Chart(donutChart, {
@@ -111,19 +114,21 @@ const fixTyposInNames = function fixTyposInCharacterNames(data) {
   return data;
 }
 
+// Entry point
 const chartHouseStatistics = function chartNumberOfCharactersInEachHouse() {
   fetch(url)
     .then((data) => data.json())
     .then((data) => {
       data = fixTyposInNames(data);
 
-      const { houseNames, charactersCountInSameHouseArray } =
+      const charactersCountInSameHouseArray =
         findCharactersBasedOnHouse(data);
-      renderChart(houseNames, charactersCountInSameHouseArray);
+      renderChart(charactersCountInSameHouseArray);
     })
     .catch((error) => console.error(error));
 };
 
+// We need to make sure to put characters in respective houses without repetition
 const findCharactersBasedOnHouse =
   function findCharactersBasedOnHouseInArrayOfObjects(allCharactersArray) {
     const charactersCountInSameHouseArray = [];
@@ -131,32 +136,36 @@ const findCharactersBasedOnHouse =
 
     let charactersCountInSameHouse = 0;
 
+    // loops through all characters and searches for a specific character. Omits all characters that already were matched up
     for (let i = 0; i < allCharactersArray.length; i++) {
       const characterInfo = allCharactersArray[i];
       charactersCountInSameHouse = 0;
 
       const searchString = characterInfo['family'].replace('House ', '');
 
+      // Do not want to search for the number of characters in a house that has already been calculated
       if (
-        !houseNames.includes(searchString) &&
-        searchString != 'Unknown' &&
-        searchString != 'None'
+        !houseNames.includes(searchString)
+        && searchString != 'Unknown'
+        && searchString != 'None'
       ) {
+        // returns all characters that are in the house specified by the search string
         charactersCountInSameHouse = recordSameHouse(
           searchString,
           allCharactersArray
         );
 
+        // If there are no characters at a house, omit an entry in the number and name arrays for that house
         if (charactersCountInSameHouse !== 0) {
+          // Pushes the name of the house into a seperate array.
+          // The number of characters in a house and the name of that house are going to be at the same index
           charactersCountInSameHouseArray.push(charactersCountInSameHouse);
           houseNames.push(searchString);
         }
       }
     }
 
-    return { houseNames, charactersCountInSameHouseArray };
+    return charactersCountInSameHouseArray;
   };
 
 chartHouseStatistics();
-
-//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes
