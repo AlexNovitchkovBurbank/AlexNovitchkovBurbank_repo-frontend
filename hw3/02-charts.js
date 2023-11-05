@@ -109,6 +109,7 @@ const fixTyposInNames = function fixTyposInCharacterNames(data) {
   for (let i = 0; i < data.length; i++) {
     data[i]['family'] = data[i]['family'].replace("Targaryn", "Targaryen");
     data[i]['family'] = data[i]['family'].replace("Unkown", "Unknown");
+    data[i]['family'] = data[i]['family'].replace("Lannister", "Lanister");
   }
 
   return data;
